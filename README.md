@@ -31,3 +31,15 @@ $ bin/rails server
 # Visit the index page where characters are listed
 $ firefox http://localhost:3000
 ```
+## Tests
+
+The following tests are implemented:
+* Integration test for the controller
+* Character model test
+* System test. It uses firefox so you may need to install the geckodriver from https://github.com/mozilla/geckodriver/releases
+
+
+```
+rake test
+PATH=$PATH:/path/to/geckodriver rake test:system
+```
