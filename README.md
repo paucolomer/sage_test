@@ -1,24 +1,33 @@
-# README
+# Sage test - Rick and Morty API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Comments
+* For pagination I used the gem pagy which seems to perform better than will_paginate.
+* Front-end is done with bootstrap.
+* Periodic task that has to run every 12 hours uses the gem whenever to create the crontab file. It calls a rake task that uses a service to import all data through the Rick and Morty API.
 
-Things you may want to cover:
+## Configuration
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+```bash
+# Clone this repository
+git clone https://github.com/paucolomer/sage_test.git
 
-* Database creation
+# Move to the rails project cloned
+cd sage_test
 
-* Database initialization
+# Run migrations
+$ rake db:migrate
 
-* How to run the test suite
+# Import all data from the Rick and Morty API
+$ rake rick_and_morty:import
 
-* Services (job queues, cache servers, search engines, etc.)
+# Update the contrab file with the corresponding job to ensure every 12 hours the import task is executed
+$ whenever --update-crontab
 
-* Deployment instructions
+# Start the app server
+$ bin/rails server
 
-* ...
+# Visit the index page where characters are listed
+$ firefox http://localhost:3000
+```
