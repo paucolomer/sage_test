@@ -38,6 +38,6 @@ The following tests are implemented:
 
 
 ```
-rake test
-PATH=$PATH:/path/to/geckodriver rake test:system
+rails test
+PATH=$PATH:/path/to/geckodriver rails test:system
 ```
