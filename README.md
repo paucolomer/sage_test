@@ -17,19 +17,19 @@ git clone https://github.com/paucolomer/sage_test.git
 cd sage_test
 
 # Run migrations
-$ rake db:migrate
+rake db:migrate
 
 # Import all data from the Rick and Morty API
-$ rake rick_and_morty:import
+rake rick_and_morty:import
 
 # Update the contrab file with the corresponding job to ensure every 12 hours the import task is executed
-$ whenever --update-crontab
+whenever --update-crontab
 
 # Start the app server
-$ bin/rails server
+bin/rails server
 
 # Visit the index page where characters are listed
-$ firefox http://localhost:3000
+firefox http://localhost:3000
 ```
 ## Tests
 
