@@ -1,24 +1,6 @@
-# README
+# Sage test - Rick and Morty API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Comments
+* For pagination I used the gem pagy which seems to perform better than will_paginate.
+* Front-end is done with bootstrap.
+* Periodic task that has to run every 12 hours uses the gem whenever to create the crontab file. It calls a rake task that uses a service to import all data through the Rick and Morty API.
