@@ -1,0 +1,26 @@
+<h1><%= t('.title') %></h1>
+
+<div class="pagy-header"><%== pagy_bootstrap_nav(@pagy) %></div>
+
+<table class="table table-characters table-striped">
+  <thead>
+    <tr>
+      <th scope="col"><%= t('.title-name') %></th>
+      <th scope="col"><%= t('.title-image') %></th>
+      <th scope="col"><%= t('.title-status') %></th>
+      <th scope="col"><%= t('.title-episodes') %></th>
+    </tr>
+  </thead>
+  <tbody>
+	<% @characters.each do |character| %>
+		<tr>
+			<td class="col-name"><%= character.name %></td>
+			<td class="col-image"><%= image_tag(character.image, height: 64) %></td>
+			<td class="col-status"><%= character.status_to_str %></td>
+			<td><%= character.episodes.pluck(:id).join(", ") %></td>
+		</tr>
+	<% end %>
+  </tbody>
+</table>
+		
+<div class="pagy-footer"><%== pagy_bootstrap_nav(@pagy) %></div>
