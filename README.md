@@ -14,6 +14,9 @@ git clone https://github.com/paucolomer/sage_test.git
 # Move to the rails project cloned
 cd sage_test
 
+# Install all gems
+bundle install
+
 # Run migrations
 rake db:migrate
 
