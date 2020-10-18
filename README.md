@@ -3,11 +3,9 @@
 ## Comments
 * For pagination I used the gem pagy which seems to perform better than will_paginate.
 * Front-end is done with bootstrap.
-* Periodic task that has to run every 12 hours uses the gem whenever to create the crontab file. It calls a rake task that uses a service to import all data through the Rick and Morty API.
+* Periodic task that has to run every 12 hours uses the gem whenever to create the crontab file. It calls a rake task that uses a service to import all data through the Rick and Morty API. That could also be implemented using the gem deamons in order to create a daemon for a ruby script that implements a loop that calls the rake task and then sleeps 12 hours.
 
 ## Configuration
-
-
 
 ```bash
 # Clone this repository
