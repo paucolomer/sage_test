@@ -5,23 +5,28 @@ class RickAndMortyApi
 	URL="https://rickandmortyapi.com/api/character".freeze
 
 	def self.import_characters(opts={})
-		
-		# Delete all characters and episodes from the DB in an efficient way
-		CharactersEpisodes.delete_all
-		Character.delete_all
-		Episode.delete_all
+		# Import all characters from Rick and Morty API
+		ActiveRecord::Base.transaction do
+			# Using a transaction we make sure the last import done is available in case
+			# something goes wrong
 
-		n_pages = 1
-		episodes = []
-		res = get(URL)
-		handle_result(res, episodes)
-		while !res["info"]["next"].nil?
-			Rails.logger.info("Imported page #{n_pages}")
-			res = get(res["info"]["next"])
+			# Delete all characters and episodes from the DB in an efficient way
+			CharactersEpisodes.delete_all
+			Character.delete_all
+			Episode.delete_all
+
+			n_pages = 1
+			episodes = []
+			res = get(URL)
 			handle_result(res, episodes)
-			n_pages += 1
+			while !res["info"]["next"].nil?
+				Rails.logger.info("Imported page #{n_pages}")
+				res = get(res["info"]["next"])
+				handle_result(res, episodes)
+				n_pages += 1
+			end
+			Rails.logger.info("Imported #{Character.count} characters and #{episodes.size} episodes")
 		end
-		Rails.logger.info("Imported #{Character.count} characters and #{episodes.size} episodes")
 	end
 
 protected
